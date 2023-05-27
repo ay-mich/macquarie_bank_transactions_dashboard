@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: dim_subcategory
+    description: Dimension table for subcategories
+    columns:
+      - name: subcategory
+        description: The subcategory of the transaction

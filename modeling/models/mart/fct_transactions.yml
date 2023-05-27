@@ -1,0 +1,39 @@
+
+version: 2
+
+models:
+  - name: fct_transactions
+    description: Fact table for transactions
+    columns:
+      - name: transaction_id
+        description: Unique identifier for the transaction
+      - name: account_id
+        description: Foreign key to the dim_account table
+        tests:
+          - relationships:
+              to: ref('dim_account')
+              field: id
+      - name: category_id
+        description: Foreign key to the dim_category table
+        tests:
+          - relationships:
+              to: ref('dim_category')
+              field: id
+      - name: subcategory_id
+        description: Foreign key to the dim_subcategory table
+        tests:
+          - relationships:
+              to: ref('dim_subcategory')
+              field: id
+      - name: transaction_date
+        description: The date of the transaction
+      - name: details
+        description: Additional details about the transaction
+      - name: debit
+        description: The amount debited in the transaction
+      - name: credit
+        description: The amount credited in the transaction
+      - name: balance
+        description: The balance after the transaction
+      - name: original_description
+        description: The original description of the transaction

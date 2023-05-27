@@ -1,0 +1,48 @@
+version: '3'
+name: macquarie_bank_transactions
+
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: transactor
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: my_transactions
+    ports:
+      - "5432:5432"
+
+  bi:
+    image: metabase/metabase:latest
+    depends_on:
+      - db
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER: transactor
+      MB_DB_PASS: password
+      MB_DB_HOST: db
+    ports:
+      - 3000:3000
+
+  modeling:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    command:
+      [
+        "sh",
+        "-c",
+        "chmod +x ./wait-for-postgres.sh && ./wait-for-postgres.sh db python src/main.py && cd modeling && dbt debug && dbt run && tail -f /dev/null"
+      ]
+    environment:
+      DB_HOST: db
+      DB_USER: transactor
+      DB_PASS: password
+      DB_NAME: my_transactions

@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: dim_account
+    description: Dimension table for accounts
+    columns:
+      - name: account
+        description: The name of the account
+        # Add more columns as needed

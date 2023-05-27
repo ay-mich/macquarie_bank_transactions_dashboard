@@ -1,0 +1,12 @@
+modeling:
+  target: postgres
+  outputs:
+    postgres:
+      type: postgres
+      host: db
+      user: transactor
+      pass: password
+      dbname: my_transactions
+      schema: transactions
+      port: 5432
+      # threads: 10

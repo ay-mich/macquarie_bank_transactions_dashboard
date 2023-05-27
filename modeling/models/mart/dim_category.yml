@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: dim_category
+    description: Dimension table for categories
+    columns:
+      - name: category
+        description: The category of the transaction
