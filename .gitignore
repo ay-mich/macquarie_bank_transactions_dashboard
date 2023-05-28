@@ -140,4 +140,5 @@ dmypy.json
 /archive
 .idea
 **/.DS_Store
+.DS_Store
 .user.yml
