@@ -6,8 +6,9 @@ from src.data import process_data
 from src.matches import matches
 from main import main
 
-@patch('src.data.process_data', return_value=DataFrame())
-@patch('src.matches.matches')
+
+@patch("src.data.process_data", return_value=DataFrame())
+@patch("src.matches.matches")
 def test_main(mock_matches, mock_process_data, db_objects, csv_files):
     Session, engine = db_objects
 

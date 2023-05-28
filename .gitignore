@@ -138,3 +138,6 @@ dmypy.json
 /import.*
 !/import/fake.csv
 /archive
+.idea
+**/.DS_Store
+.user.yml

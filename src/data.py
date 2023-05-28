@@ -3,14 +3,15 @@ from sqlalchemy.exc import SQLAlchemyError
 import pandas as pd
 from pandas.errors import ParserError
 
+
 def load_csv(dir_name: str, filename: str) -> pd.DataFrame | None:
     """
     Load a CSV file as a pandas DataFrame.
-    
+
     Parameters:
         dir_name (str): Directory path to the CSV file.
         filename (str): Name of the CSV file.
-    
+
     Returns:
         df (pd.DataFrame): Loaded DataFrame.
 

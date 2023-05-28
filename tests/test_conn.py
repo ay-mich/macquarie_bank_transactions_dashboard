@@ -1,14 +1,16 @@
 from src.conn import create_db_session
 from sqlalchemy.exc import SQLAlchemyError
 
+
 def test_create_db_session_missing_env(mock_env_vars, monkeypatch):
     """
     Test that function returns None, None when an environment variable is missing.
     """
-    monkeypatch.delenv('DB_USER')
+    monkeypatch.delenv("DB_USER")
     session, engine = create_db_session()
     assert session is None
     assert engine is None
+
 
 def test_create_db_session_sqlalchemy_error(mock_env_vars, mock_create_engine):
     """
@@ -19,7 +21,10 @@ def test_create_db_session_sqlalchemy_error(mock_env_vars, mock_create_engine):
     assert session is not None
     assert engine is not None
 
-def test_create_db_session_success(mock_env_vars, mock_create_engine, mock_sessionmaker):
+
+def test_create_db_session_success(
+    mock_env_vars, mock_create_engine, mock_sessionmaker
+):
     """
     Test that function returns Session, Engine on success.
     """

@@ -19,24 +19,21 @@ def matches(Session, df: pd.DataFrame, filename: str) -> Optional[Tuple[int, int
     Raises:
         SQLAlchemyError: If there's an error executing the query.
     """
-    if df is None:
-        exit()
-    else:    
-        try:
-            with Session() as session:
-                count_query = text("SELECT COUNT(*) FROM raw_transactions")
-                count_db = session.execute(count_query).scalar()
-                count_csv = df.shape[0]
+    try:
+        with Session() as session:
+            count_query = text("SELECT COUNT(*) FROM raw_transactions")
+            count_db = session.execute(count_query).scalar()
+            count_csv = df.shape[0]
 
-                if count_db != count_csv:
-                    print(
-                        f"Discrepancy in number of records for {filename}. CSV: {count_csv}, DB: {count_db}"
-                    )
-                else:
-                    print(
-                        f"Import of {filename} was successful. {count_csv} records were imported."
-                    )
-                return count_csv, count_db
-        except SQLAlchemyError as e:
-            print(f"Error counting records: {e}")
-            return None
+            if count_db != count_csv:
+                print(
+                    f"Discrepancy in number of records for {filename}. CSV: {count_csv}, DB: {count_db}"
+                )
+            else:
+                print(
+                    f"Import of {filename} was successful. {count_csv} records were imported."
+                )
+            return count_csv, count_db
+    except SQLAlchemyError as e:
+        print(f"Error counting records: {e}")
+        return None

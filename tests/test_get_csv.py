@@ -34,4 +34,3 @@ def test_get_csv_files_fake_csv_and_other(tmp_path):
     (d / "other.csv").touch()
     csv_files = get_csv_files(str(d))
     assert csv_files == ["other.csv"]
-

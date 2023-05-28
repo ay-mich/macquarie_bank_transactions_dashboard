@@ -1,11 +1,12 @@
 import os
 from typing import List, Optional
 
+
 def get_csv_files(dir_name: str) -> Optional[List[str]]:
     """
     Get the list of CSV files in the provided directory.
 
-    If 'fake.csv' is the only CSV file, it is returned. If 'fake.csv' and 
+    If 'fake.csv' is the only CSV file, it is returned. If 'fake.csv' and
     another CSV file exist, the other file is returned. If no CSV files exist,
     return None.
 
