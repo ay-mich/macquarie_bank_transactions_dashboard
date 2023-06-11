@@ -1,10 +1,10 @@
 from typing import List
 import sys
 
-from src.conn import create_db_session
-from src.data import process_data
-from src.get_csv import get_csv_files
-from src.matches import matches
+from conn import create_db_session
+from data import process_data
+from get_csv import get_csv_files
+from matches import matches
 
 
 def main(csv_files: List[str], Session, engine):
